@@ -1,0 +1,29 @@
+Required Credentials and APIs for ReliefLink
+
+To make this project fully functional with all its modules, please provide the following keys and credentials:
+
+1. MongoDB Credentials
+   - MongoDB Connection URI (e.g., MongoDB Atlas connection string)
+   - Reason: Needed to store user data, tasks, inventory, relief requests, etc.
+
+2. Map & Route Navigation API Key
+   - Platform: Mapbox / Google Maps API Key or OpenRouteService API Key
+   - Reason: Needed for "Safe Route Navigation" for volunteers and rendering interactive maps.
+
+3. Weather API Key
+   - Platform: OpenWeatherMap API Key / WeatherAPI key
+   - Reason: Needed for the "Weather & Disaster Alert Module".
+
+4. News API Key
+   - Platform: NewsAPI Key, GNews API, or Bing News API
+   - Reason: Needed for showing top disaster-related news alerts.
+
+5. Push Notification / Twilio Service 
+   - Platform: Firebase Cloud Messaging (FCM) server key (if using push notifications)
+   - Platform: Twilio Account SID, Auth Token & Phone Number 
+   - Reason: Needed for "Receive Push Notifications" and actual SMS OTP for "Quick Phone Number Login".
+
+6. JWT Secret Key
+   - A secure string for user authentication and authorization logic across modules. (I can generate a local one for development, but specify if you have a preference).
+
+

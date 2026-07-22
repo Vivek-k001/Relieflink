@@ -153,10 +153,10 @@ const getMe = async (req, res) => {
 // @route PUT /api/auth/profile
 const updateProfile = async (req, res) => {
   try {
-    const { name, address, district, state, skills, vehicleType, isAvailable } = req.body;
+    const { name, address, district, state, skills, languages, experience, vehicleType, isAvailable } = req.body;
     const user = await User.findByIdAndUpdate(
       req.user._id,
-      { name, address, district, state, skills, vehicleType, isAvailable },
+      { name, address, district, state, skills, languages, experience, vehicleType, isAvailable },
       { new: true, runValidators: true }
     );
     res.json({ success: true, user });
@@ -164,6 +164,7 @@ const updateProfile = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
+
 
 // @desc  Update I'm Safe status
 // @route PUT /api/auth/safe-status

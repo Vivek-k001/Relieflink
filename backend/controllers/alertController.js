@@ -53,6 +53,45 @@ const createAlert = async (req, res) => {
 // @route GET /api/alerts
 const getAlerts = async (req, res) => {
   try {
+    const totalCount = await DisasterAlert.countDocuments();
+    if (totalCount === 0) {
+      await DisasterAlert.insertMany([
+        {
+          title: '🚨 RED ALERT: Severe Flood Warning in Low-Lying Coastal & Riverine Districts',
+          message: 'Heavy continuous rainfall has led to rising water levels in rivers and coastal inundation. Water levels are expected to cross danger marks.',
+          disasterType: 'flood',
+          severity: 'emergency',
+          affectedAreas: ['Kuttanad', 'Ernakulam Coastal', 'Alappuzha', 'Thrissur'],
+          broadcastZone: 'Statewide Coastal Belt',
+          actionRequired: 'Immediate evacuation to designated relief camps on higher ground. Stock clean drinking water and medical supplies.',
+          isActive: true,
+          expiresAt: new Date(Date.now() + 48 * 60 * 60 * 1000),
+        },
+        {
+          title: '⚠️ CYCLONE ADVISORY: Deep Depression in Bay of Bengal',
+          message: 'Cyclonic storm gathering strength with expected wind speeds of 85-100 km/h. Heavy to very heavy rainfall expected across coastal districts.',
+          disasterType: 'cyclone',
+          severity: 'critical',
+          affectedAreas: ['Coastal Odisha', 'Gangetic West Bengal', 'Northern Andhra'],
+          broadcastZone: 'East Coast Zone',
+          actionRequired: 'Fishermen advised not to venture into sea. Secure loose structures and stay indoors.',
+          isActive: true,
+          expiresAt: new Date(Date.now() + 72 * 60 * 60 * 1000),
+        },
+        {
+          title: '⛰️ LANDSLIDE HAZARD: Torrential Rain Advisory for Western Ghats',
+          message: 'Saturated soil conditions due to relentless downpours have significantly increased landslide risk along mountain slopes.',
+          disasterType: 'landslide',
+          severity: 'warning',
+          affectedAreas: ['Wayanad', 'Idukki', 'Shimoga Ghats'],
+          broadcastZone: 'High Altitude Zones',
+          actionRequired: 'Avoid non-essential travel on mountain highways between 7 PM and 6 AM.',
+          isActive: true,
+          expiresAt: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        },
+      ]);
+    }
+
     const { active, disasterType } = req.query;
     let query = {};
     if (active === 'true') {

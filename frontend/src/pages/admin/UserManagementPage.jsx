@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/common/Sidebar';
 import { adminAPI } from '../../api';
 import toast from 'react-hot-toast';
-import { Search, ToggleLeft, ToggleRight, Trash2, RefreshCw } from 'lucide-react';
+import { Search, ToggleLeft, ToggleRight, Trash2, RefreshCw, ArrowLeft } from 'lucide-react';
 
 export default function UserManagementPage() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -46,7 +48,14 @@ export default function UserManagementPage() {
       <main className="main-content with-sidebar">
         <div style={{ background: 'linear-gradient(135deg, #111827, #1F2937)', padding: '1.75rem 2rem', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div><h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}>👥 User Management</h1><p style={{ color: 'rgba(255,255,255,0.6)' }}>{total} total users</p></div>
-          <button onClick={fetch} style={{ background: 'rgba(255,255,255,0.1)', color: 'white', border: 'none', borderRadius: 10, padding: '0.5rem 1rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}><RefreshCw size={15} />Refresh</button>
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <button 
+              onClick={() => navigate(-1)} 
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 0.9rem', borderRadius: 10, background: 'rgba(255,255,255,0.15)', color: 'white', border: '1px solid rgba(255,255,255,0.2)', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem' }}>
+              <ArrowLeft size={16} /> Back
+            </button>
+            <button onClick={fetch} style={{ background: 'rgba(255,255,255,0.1)', color: 'white', border: 'none', borderRadius: 10, padding: '0.5rem 1rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}><RefreshCw size={15} />Refresh</button>
+          </div>
         </div>
 
         <div style={{ padding: '1.5rem 2rem' }}>

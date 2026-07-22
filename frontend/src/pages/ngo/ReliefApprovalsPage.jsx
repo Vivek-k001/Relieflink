@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/common/Sidebar';
 import { reliefAPI } from '../../api';
 import toast from 'react-hot-toast';
-import { CheckCircle, XCircle, Eye, RefreshCw } from 'lucide-react';
+import { CheckCircle, XCircle, Eye, RefreshCw, ArrowLeft } from 'lucide-react';
 
 export default function ReliefApprovalsPage() {
+  const navigate = useNavigate();
   const [list, setList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('pending');
@@ -37,7 +39,14 @@ export default function ReliefApprovalsPage() {
         <div style={{ background: 'linear-gradient(135deg, #059669, #047857)', padding: '1.75rem 2rem', color: 'white' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div><h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}>📋 Relief Approvals</h1><p style={{ color: 'rgba(255,255,255,0.8)' }}>Review and approve incoming relief requests</p></div>
-            <button onClick={fetch} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: 'none', borderRadius: 10, padding: '0.5rem 1rem', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}><RefreshCw size={15} />Refresh</button>
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <button 
+                onClick={() => navigate(-1)} 
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 0.9rem', borderRadius: 10, background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem' }}>
+                <ArrowLeft size={16} /> Back
+              </button>
+              <button onClick={fetch} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: 'none', borderRadius: 10, padding: '0.5rem 1rem', cursor: 'pointer', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem' }}><RefreshCw size={15} />Refresh</button>
+            </div>
           </div>
         </div>
 

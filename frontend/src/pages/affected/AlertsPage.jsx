@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/common/Sidebar';
 import { alertAPI } from '../../api';
-import { Radio, AlertTriangle, RefreshCw } from 'lucide-react';
+import { Radio, AlertTriangle, RefreshCw, ArrowLeft } from 'lucide-react';
 
 const SEV_STYLES = {
   emergency: { bg: '#FEF2F2', border: '#FCA5A5', color: '#DC2626', emoji: '🚨' },
@@ -11,6 +12,7 @@ const SEV_STYLES = {
 };
 
 export default function AlertsPage() {
+  const navigate = useNavigate();
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
@@ -39,9 +41,16 @@ export default function AlertsPage() {
               </h1>
               <p style={{ color: 'rgba(255,255,255,0.8)' }}>Real-time emergency notifications and warnings</p>
             </div>
-            <button onClick={fetch} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: 'none', borderRadius: 10, padding: '0.5rem 1rem', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <RefreshCw size={15} /> Refresh
-            </button>
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <button 
+                onClick={() => navigate(-1)} 
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 0.9rem', borderRadius: 10, background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem' }}>
+                <ArrowLeft size={16} /> Back
+              </button>
+              <button onClick={fetch} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: 'none', borderRadius: 10, padding: '0.5rem 1rem', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <RefreshCw size={15} /> Refresh
+              </button>
+            </div>
           </div>
         </div>
 

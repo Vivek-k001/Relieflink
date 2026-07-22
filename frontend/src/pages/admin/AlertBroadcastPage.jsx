@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/common/Sidebar';
 import { alertAPI } from '../../api';
 import toast from 'react-hot-toast';
-import { Plus, ShieldAlert, Power } from 'lucide-react';
+import { Plus, ShieldAlert, Power, ArrowLeft } from 'lucide-react';
 
 const DISASTER_TYPES = ['flood', 'earthquake', 'cyclone', 'landslide', 'fire', 'heatwave', 'tsunami', 'drought', 'other'];
 const SEVERITIES = [
@@ -13,6 +14,7 @@ const SEVERITIES = [
 ];
 
 export default function AlertBroadcastPage() {
+  const navigate = useNavigate();
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showCreate, setShowCreate] = useState(false);
@@ -53,7 +55,14 @@ export default function AlertBroadcastPage() {
       <main className="main-content with-sidebar">
         <div style={{ background: 'linear-gradient(135deg, #B91C1C, #991B1B)', padding: '1.75rem 2rem', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div><h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}><ShieldAlert size={22} style={{ display: 'inline', marginRight: 8 }} />Alert Broadcast</h1><p style={{ color: 'rgba(255,255,255,0.8)' }}>Broadcast emergency alerts to all users</p></div>
-          <button className="btn btn-sos" onClick={() => setShowCreate(true)} style={{ fontSize: '0.875rem', padding: '0.625rem 1.25rem', animation: 'none' }}><Plus size={16} /> New Alert</button>
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <button 
+              onClick={() => navigate(-1)} 
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 0.9rem', borderRadius: 8, background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem' }}>
+              <ArrowLeft size={16} /> Back
+            </button>
+            <button className="btn btn-sos" onClick={() => setShowCreate(true)} style={{ fontSize: '0.875rem', padding: '0.625rem 1.25rem', animation: 'none' }}><Plus size={16} /> New Alert</button>
+          </div>
         </div>
 
         <div style={{ padding: '1.5rem 2rem' }}>

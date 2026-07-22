@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/common/Sidebar';
 import { useLocationStore } from '../../store/locationStore';
 import { reliefAPI } from '../../api';
 import toast from 'react-hot-toast';
+import { ArrowLeft } from 'lucide-react';
 
 const CATEGORIES = [
   { category: 'food', emoji: '🍚', label: 'Food', items: ['Rice', 'Dal', 'Biscuits', 'Bread', 'Ready-to-eat meals', 'Fruits'] },
@@ -16,6 +18,7 @@ const CATEGORIES = [
 ];
 
 export default function ReliefRequestPage() {
+  const navigate = useNavigate();
   const { lat, lng, getLocation } = useLocationStore();
   const [selected, setSelected] = useState({});
   const [notes, setNotes] = useState('');
@@ -69,9 +72,16 @@ export default function ReliefRequestPage() {
     <div className="page-layout">
       <Sidebar />
       <main className="main-content with-sidebar">
-        <div style={{ background: 'linear-gradient(135deg, #2563EB, #1D4ED8)', padding: '1.75rem 2rem', color: 'white' }}>
-          <h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}>📦 Request Relief Items</h1>
-          <p style={{ color: 'rgba(255,255,255,0.8)' }}>Select the items you need. We'll match you with nearby NGOs.</p>
+        <div style={{ background: 'linear-gradient(135deg, #2563EB, #1D4ED8)', padding: '1.75rem 2rem', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}>📦 Request Relief Items</h1>
+            <p style={{ color: 'rgba(255,255,255,0.8)' }}>Select the items you need. We'll match you with nearby NGOs.</p>
+          </div>
+          <button 
+            onClick={() => navigate(-1)} 
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.45rem 0.9rem', borderRadius: 8, background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', fontWeight: 600, fontSize: '0.8125rem', backdropFilter: 'blur(4px)', flexShrink: 0 }}>
+            <ArrowLeft size={16} /> Back
+          </button>
         </div>
 
         <div style={{ maxWidth: 800, margin: '2rem auto', padding: '0 1.5rem' }}>

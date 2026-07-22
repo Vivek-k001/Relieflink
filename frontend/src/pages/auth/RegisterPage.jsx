@@ -42,15 +42,34 @@ export default function RegisterPage() {
         </div>
 
         <div style={{ padding: '2rem' }}>
-          <button onClick={() => navigate('/login')} style={{ display: 'flex', alignItems: 'center', gap: '0.375rem', color: '#64748B', fontSize: '0.875rem', background: 'none', border: 'none', cursor: 'pointer', marginBottom: '1.5rem', padding: 0 }}>
-            <ArrowLeft size={15} /> Back to login
+          <button 
+            onClick={() => navigate('/login')} 
+            style={{ 
+              display: 'inline-flex', 
+              alignItems: 'center', 
+              gap: '0.5rem', 
+              color: '#1E293B', 
+              fontSize: '0.875rem', 
+              fontWeight: 600, 
+              background: '#F1F5F9', 
+              border: '1.5px solid #CBD5E1', 
+              borderRadius: 10, 
+              padding: '0.45rem 1rem', 
+              cursor: 'pointer', 
+              marginBottom: '1.5rem',
+              boxShadow: '0 2px 5px rgba(0,0,0,0.05)',
+              transition: 'all 0.2s'
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#E2E8F0'; e.currentTarget.style.borderColor = '#94A3B8'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#F1F5F9'; e.currentTarget.style.borderColor = '#CBD5E1'; }}>
+            <ArrowLeft size={16} /> Back to Login
           </button>
 
           {/* Role Selection */}
           <div className="form-group">
             <label className="form-label">Register as</label>
             <div style={{ display: 'flex', gap: '0.75rem' }}>
-              {[{ v: 'volunteer', e: '🦺', l: 'Volunteer' }, { v: 'ngo', e: '🏥', l: 'NGO / Relief Center' }].map(r => (
+              {[{ v: 'volunteer', e: '🦺', l: 'Volunteer' }, { v: 'ngo', e: '🏥', l: 'NGO Relief Center (Admin)' }].map(r => (
                 <button key={r.v} onClick={() => setRole(r.v)} style={{ flex: 1, padding: '0.75rem', borderRadius: 10, border: role === r.v ? '2px solid #2563EB' : '2px solid #E2E8F0', background: role === r.v ? '#EFF6FF' : 'white', cursor: 'pointer', textAlign: 'center', transition: 'all 0.2s' }}>
                   <div style={{ fontSize: '1.25rem' }}>{r.e}</div>
                   <div style={{ fontSize: '0.8125rem', fontWeight: 600, color: role === r.v ? '#2563EB' : '#64748B', marginTop: '0.25rem' }}>{r.l}</div>

@@ -17,6 +17,8 @@ const adminRoutes = require('./routes/admin.routes');
 const notificationRoutes = require('./routes/notification.routes');
 const weatherRoutes = require('./routes/weather.routes');
 const donationRoutes = require('./routes/donation.routes');
+const newsRoutes = require('./routes/news.routes');
+const safetyRoutes = require('./routes/safety.routes');
 
 const app = express();
 const server = http.createServer(app);
@@ -52,6 +54,8 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/weather', weatherRoutes);
 app.use('/api/donations', donationRoutes);
+app.use('/api/news', newsRoutes);
+app.use('/api/safety', safetyRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

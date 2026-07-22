@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/common/Sidebar';
 import { sosAPI, reliefAPI } from '../../api';
-import { ClipboardList, Package, AlertTriangle, RefreshCw } from 'lucide-react';
+import { ClipboardList, Package, AlertTriangle, RefreshCw, ArrowLeft } from 'lucide-react';
 
 const STATUS_COLORS = { pending: 'yellow', assigned: 'blue', in_progress: 'blue', resolved: 'green', delivered: 'green', cancelled: 'gray' };
 
 export default function MyRequestsPage() {
+  const navigate = useNavigate();
   const [tab, setTab] = useState('sos');
   const [sosList, setSosList] = useState([]);
   const [reliefList, setReliefList] = useState([]);
@@ -32,9 +34,16 @@ export default function MyRequestsPage() {
               <h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}>📋 My Requests</h1>
               <p style={{ color: 'rgba(255,255,255,0.8)' }}>Track all your SOS & relief requests</p>
             </div>
-            <button onClick={fetch} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: 'none', borderRadius: 10, padding: '0.5rem 1rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', fontWeight: 600 }}>
-              <RefreshCw size={15} /> Refresh
-            </button>
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+              <button 
+                onClick={() => navigate(-1)} 
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 0.9rem', borderRadius: 10, background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem' }}>
+                <ArrowLeft size={16} /> Back
+              </button>
+              <button onClick={fetch} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: 'none', borderRadius: 10, padding: '0.5rem 1rem', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.875rem', fontWeight: 600 }}>
+                <RefreshCw size={15} /> Refresh
+              </button>
+            </div>
           </div>
         </div>
 

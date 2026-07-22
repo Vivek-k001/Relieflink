@@ -4,7 +4,7 @@ import Sidebar from '../../components/common/Sidebar';
 import { useLocationStore } from '../../store/locationStore';
 import { sosAPI } from '../../api';
 import toast from 'react-hot-toast';
-import { MapPin, Users, AlertTriangle, Phone, Navigation } from 'lucide-react';
+import { MapPin, Users, AlertTriangle, Phone, Navigation, ArrowLeft } from 'lucide-react';
 
 const DISASTER_TYPES = [
   { type: 'flood', emoji: '🌊', label: 'Flood' },
@@ -77,11 +77,18 @@ export default function SOSPage() {
     <div className="page-layout">
       <Sidebar />
       <main className="main-content with-sidebar">
-        <div style={{ background: 'linear-gradient(135deg, #DC2626, #B91C1C)', padding: '1.75rem 2rem', color: 'white' }}>
-          <h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            🆘 Emergency SOS Request
-          </h1>
-          <p style={{ color: 'rgba(255,255,255,0.8)', marginTop: '0.25rem' }}>Your location will be shared with nearby rescue teams</p>
+        <div style={{ background: 'linear-gradient(135deg, #DC2626, #B91C1C)', padding: '1.75rem 2rem', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              🆘 Emergency SOS Request
+            </h1>
+            <p style={{ color: 'rgba(255,255,255,0.8)', marginTop: '0.25rem' }}>Your location will be shared with nearby rescue teams</p>
+          </div>
+          <button 
+            onClick={() => navigate(-1)} 
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.45rem 0.9rem', borderRadius: 8, background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', fontWeight: 600, fontSize: '0.8125rem', backdropFilter: 'blur(4px)', flexShrink: 0 }}>
+            <ArrowLeft size={16} /> Back
+          </button>
         </div>
 
         <div style={{ maxWidth: 640, margin: '2rem auto', padding: '0 1.5rem' }}>

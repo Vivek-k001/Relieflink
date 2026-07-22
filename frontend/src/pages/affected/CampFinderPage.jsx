@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/common/Sidebar';
 import MapView from '../../components/maps/MapView';
 import { useLocationStore } from '../../store/locationStore';
 import { campAPI } from '../../api';
-import { MapPin, Phone, Users, Search } from 'lucide-react';
+import { MapPin, Phone, Users, Search, ArrowLeft } from 'lucide-react';
 
 export default function CampFinderPage() {
+  const navigate = useNavigate();
   const { lat, lng, getLocation } = useLocationStore();
   const [camps, setCamps] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -30,9 +32,16 @@ export default function CampFinderPage() {
     <div className="page-layout">
       <Sidebar />
       <main className="main-content with-sidebar">
-        <div style={{ background: 'linear-gradient(135deg, #1D4ED8, #2563EB)', padding: '1.75rem 2rem', color: 'white' }}>
-          <h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}>🏕️ Find Nearby Relief Camps</h1>
-          <p style={{ color: 'rgba(255,255,255,0.8)' }}>Safe shelters, food, water, and medical aid near you</p>
+        <div style={{ background: 'linear-gradient(135deg, #1D4ED8, #2563EB)', padding: '1.75rem 2rem', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}>🏕️ Find Nearby Relief Camps</h1>
+            <p style={{ color: 'rgba(255,255,255,0.8)' }}>Safe shelters, food, water, and medical aid near you</p>
+          </div>
+          <button 
+            onClick={() => navigate(-1)} 
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.45rem 0.9rem', borderRadius: 8, background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', fontWeight: 600, fontSize: '0.8125rem', backdropFilter: 'blur(4px)', flexShrink: 0 }}>
+            <ArrowLeft size={16} /> Back
+          </button>
         </div>
 
         <div style={{ padding: '1.5rem 2rem' }}>

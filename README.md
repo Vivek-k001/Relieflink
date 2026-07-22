@@ -30,27 +30,60 @@ ReliefLink provides dedicated portals tailored for four distinct user roles:
 
 ## 🛠️ System Modules
 
-### Affected Person Portal
-- **Dashboard**: Quick actions for SOS, finding camps, and checking request statuses.
-- **SOS System**: One-tap SOS with auto-detected location, disaster type, and priority routing.
-- **Relief Requests**: Checklist for requesting essential items like food, water, medicine, and clothing.
-- **Camp Finder**: Interactive map showing nearby relief camps, available services, and directions.
-- **Live Alerts**: Live disaster alerts, integrated weather widget (via OpenWeatherMap), and news feeds.
+### Modules Description
 
-### Volunteer Portal
-- **Volunteer Dashboard**: Active tasks, personal stats, and nearby requests mapped out.
-- **Task Management**: Turn-by-turn navigation for rescues and deliveries, real-time status updates via Socket.io.
+**ADMINS / NGO-RELIEF CENTER**
+- Dashboard  
+- Manage Users  
+- Manage Volunteers  
+- Manage Relief Camps  
+- Manage Inventory  
+- Receive & Manage Donations  
+- Approve Relief Requests  
+- Allocate Relief Resources  
+- Assign Volunteers  
+- Track Relief Distribution  
+- Manage SOS Requests  
+- Manage Disaster Alerts  
+- Broadcast Hazard Notifications  
+- Generate Reports & Analytics 
 
-### NGO / Relief Center Portal
-- **KPI Dashboard**: Overview of camps, inventory levels, and pending approvals.
-- **Camp & Inventory Management**: Create and track camps, manage stock in/out, and low-stock alerts.
-- **Task Assignment**: Approve relief requests and assign volunteers to tasks.
-- **Donations**: Log and manage incoming resources.
+**Volunteer**
+- Register / Login 
+- Register Skills 
+- View Nearby SOS Requests 
+- View Relief Tasks 
+- Accept Rescue & Delivery Tasks 
+- Deliver Relief Items 
+- Verify Task Completion 
+- Update Task Status 
+- Safe Route Navigation 
 
-### Admin Portal
-- **System Dashboard**: Real-time activity feeds and system-wide statistics.
-- **Alert Broadcasting**: Issue disaster alerts and define hazard zones to be broadcasted to all users.
-- **User & SOS Management**: Global oversight for all unassigned SOS requests and user verifications.
+**User (Affected Person)**
+- Quick Phone Number Login 
+- Send SOS Request 
+- Update "I'm Safe" Status 
+- Request Relief Items 
+- Find Nearby Relief Camps 
+- View Nearby Emergency Services 
+- View Emergency Contacts 
+- Track Relief Request Status 
+- Receive Push Notifications 
+
+### Main Modules:          
+1. Authentication Module 
+2. Affected Person Module 
+3. Volunteer Module 
+4. NGO & Relief Center Module 
+5. SOS & Emergency Module 
+6. Relief Request & Donation Module 
+7. Inventory Management Module 
+8. Relief Camp Management Module 
+9. Maps & Navigation Module 
+10. Weather, News & Disaster Alert Module 
+11. Notification Module 
+12. Reports & Analytics 
+13. Admin Dashboard
 
 ---
 

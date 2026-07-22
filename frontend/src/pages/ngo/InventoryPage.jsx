@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/common/Sidebar';
 import { campAPI, inventoryAPI } from '../../api';
 import toast from 'react-hot-toast';
-import { Plus, Package, AlertTriangle, Minus } from 'lucide-react';
+import { Plus, Package, AlertTriangle, Minus, ArrowLeft } from 'lucide-react';
 
 const CATEGORIES = ['food', 'water', 'medicine', 'clothing', 'sanitary', 'baby_care', 'blanket', 'hygiene', 'equipment', 'other'];
 const CAT_EMOJI = { food: '🍚', water: '💧', medicine: '💊', clothing: '👕', sanitary: '🧴', baby_care: '👶', blanket: '🛏️', hygiene: '🧹', equipment: '🔧', other: '📦' };
 
 export default function InventoryPage() {
+  const navigate = useNavigate();
   const [camps, setCamps] = useState([]);
   const [selectedCamp, setSelectedCamp] = useState('');
   const [inventory, setInventory] = useState([]);
@@ -65,7 +67,14 @@ export default function InventoryPage() {
       <main className="main-content with-sidebar">
         <div style={{ background: 'linear-gradient(135deg, #7C3AED, #6D28D9)', padding: '1.75rem 2rem', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div><h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}>📦 Inventory Manager</h1><p style={{ color: 'rgba(255,255,255,0.8)' }}>Track and manage relief supplies</p></div>
-          <button className="btn" onClick={() => setShowAdd(true)} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: '2px solid rgba(255,255,255,0.3)' }}><Plus size={16} /> Add Item</button>
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <button 
+              onClick={() => navigate(-1)} 
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 0.9rem', borderRadius: 8, background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem' }}>
+              <ArrowLeft size={16} /> Back
+            </button>
+            <button className="btn" onClick={() => setShowAdd(true)} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: '2px solid rgba(255,255,255,0.3)' }}><Plus size={16} /> Add Item</button>
+          </div>
         </div>
 
         <div style={{ padding: '1.5rem 2rem' }}>

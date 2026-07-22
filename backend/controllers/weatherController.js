@@ -85,4 +85,48 @@ const getForecast = async (req, res) => {
   }
 };
 
-module.exports = { getWeather, getForecast };
+// @desc  Proxy IP / Mobile Tower Geolocation server-to-server (No CORS issues)
+// @route GET /api/weather/ip-location
+const getIpLocation = async (req, res) => {
+  try {
+    const resp = await axios.get('http://ip-api.com/json/?fields=status,message,country,regionName,city,lat,lon', { timeout: 4000 });
+    if (resp.data && resp.data.status === 'success') {
+      return res.json({
+        success: true,
+        lat: resp.data.lat,
+        lng: resp.data.lon,
+        city: resp.data.city || resp.data.regionName || 'Local Area',
+        country: resp.data.country || 'India',
+        address: `${resp.data.city || ''}, ${resp.data.regionName || ''}, ${resp.data.country || ''}`.replace(/^, |, $/, ''),
+        source: 'ip',
+      });
+    }
+  } catch {}
+
+  try {
+    const resp2 = await axios.get('https://ipapi.co/json/', { timeout: 4000 });
+    if (resp2.data && resp2.data.latitude) {
+      return res.json({
+        success: true,
+        lat: parseFloat(resp2.data.latitude),
+        lng: parseFloat(resp2.data.longitude),
+        city: resp2.data.city || resp2.data.region || 'Local Area',
+        country: resp2.data.country_name || 'India',
+        address: `${resp2.data.city || ''}, ${resp2.data.region || ''}, ${resp2.data.country_name || ''}`.replace(/^, |, $/, ''),
+        source: 'ip',
+      });
+    }
+  } catch {}
+
+  res.json({
+    success: true,
+    lat: 9.9312,
+    lng: 76.2673,
+    city: 'Kochi',
+    country: 'India',
+    address: 'Kerala, India',
+    source: 'default',
+  });
+};
+
+module.exports = { getWeather, getForecast, getIpLocation };

@@ -18,12 +18,14 @@ import ReliefRequestPage from './pages/affected/ReliefRequestPage';
 import CampFinderPage from './pages/affected/CampFinderPage';
 import MyRequestsPage from './pages/affected/MyRequestsPage';
 import AlertsPage from './pages/affected/AlertsPage';
+import GlobalSafetyPage from './pages/affected/GlobalSafetyPage';
 
 // Volunteer Pages
 import VolunteerDashboard from './pages/volunteer/Dashboard';
 import NearbyRequestsPage from './pages/volunteer/NearbyRequestsPage';
 import TaskDetailPage from './pages/volunteer/TaskDetailPage';
 import TaskHistoryPage from './pages/volunteer/TaskHistoryPage';
+import SkillsPage from './pages/volunteer/SkillsPage';
 
 // NGO Pages
 import NGODashboard from './pages/ngo/Dashboard';
@@ -143,6 +145,7 @@ function App() {
           </ProtectedRoute>
         } />
         <Route path="/alerts" element={<AlertsPage />} />
+        <Route path="/safety" element={<GlobalSafetyPage />} />
 
         {/* Volunteer */}
         <Route path="/volunteer" element={
@@ -163,6 +166,11 @@ function App() {
         <Route path="/volunteer/history" element={
           <ProtectedRoute allowedRoles={['volunteer']}>
             <TaskHistoryPage />
+          </ProtectedRoute>
+        } />
+        <Route path="/volunteer/skills" element={
+          <ProtectedRoute allowedRoles={['volunteer']}>
+            <SkillsPage />
           </ProtectedRoute>
         } />
 

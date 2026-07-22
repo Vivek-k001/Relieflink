@@ -5,12 +5,13 @@ import { useNotificationStore } from '../../store/notificationStore';
 import {
   LayoutDashboard, AlertTriangle, Package, MapPin, Bell,
   LogOut, Menu, X, Users, Settings, ClipboardList,
-  Truck, BarChart3, Heart, ShieldAlert, Radio
+  Truck, BarChart3, Heart, ShieldAlert, Radio, Award, Phone
 } from 'lucide-react';
 
 const navConfig = {
   affected: [
     { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/safety', icon: Radio, label: '🟢 Safety Map' },
     { to: '/sos', icon: AlertTriangle, label: 'Send SOS', highlight: true },
     { to: '/relief-request', icon: Package, label: 'Request Relief' },
     { to: '/camp-finder', icon: MapPin, label: 'Find Camps' },
@@ -19,12 +20,15 @@ const navConfig = {
   ],
   volunteer: [
     { to: '/volunteer', icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/safety', icon: Radio, label: '🟢 Safety Map' },
     { to: '/volunteer/nearby', icon: MapPin, label: 'Nearby Requests' },
+    { to: '/volunteer/skills', icon: Award, label: 'My Skills' },
     { to: '/volunteer/history', icon: ClipboardList, label: 'Task History' },
     { to: '/alerts', icon: Radio, label: 'Live Alerts' },
   ],
   ngo: [
     { to: '/ngo', icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/safety', icon: Radio, label: '🟢 Safety Map' },
     { to: '/ngo/camps', icon: MapPin, label: 'My Camps' },
     { to: '/ngo/inventory', icon: Package, label: 'Inventory' },
     { to: '/ngo/approvals', icon: ClipboardList, label: 'Relief Approvals' },
@@ -33,6 +37,7 @@ const navConfig = {
   ],
   admin: [
     { to: '/admin', icon: LayoutDashboard, label: 'Dashboard' },
+    { to: '/safety', icon: Radio, label: '🟢 Safety Map' },
     { to: '/admin/users', icon: Users, label: 'Users' },
     { to: '/admin/alerts', icon: ShieldAlert, label: 'Broadcast Alert' },
     { to: '/admin/sos', icon: AlertTriangle, label: 'SOS Management' },
@@ -41,6 +46,7 @@ const navConfig = {
     { to: '/admin/reports', icon: BarChart3, label: 'System Reports' },
   ],
 };
+
 
 const roleLabels = { affected: 'Affected Person', volunteer: 'Volunteer', ngo: 'NGO / Relief Center', admin: 'Administrator' };
 

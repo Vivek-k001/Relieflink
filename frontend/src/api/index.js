@@ -119,6 +119,7 @@ export const notificationAPI = {
 export const weatherAPI = {
   get: (lat, lng) => api.get('/weather', { params: { lat, lng } }),
   getForecast: (lat, lng) => api.get('/weather/forecast', { params: { lat, lng } }),
+  getIpLocation: () => api.get('/weather/ip-location'),
 };
 
 // ---- Donations ----
@@ -127,3 +128,17 @@ export const donationAPI = {
   create: (data) => api.post('/donations', data),
   receive: (id) => api.put(`/donations/${id}/receive`),
 };
+
+// ---- News ----
+export const newsAPI = {
+  getLocal: () => api.get('/news/local'),
+  getInternational: () => api.get('/news/international'),
+  getTicker: () => api.get('/news/ticker'),
+};
+
+// ---- Global Safety Broadcasts ----
+export const safetyAPI = {
+  getAll: () => api.get('/safety'),
+  post: (data) => api.post('/safety', data),
+};
+

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Sidebar from '../../components/common/Sidebar';
 import { campAPI } from '../../api';
 import { useLocationStore } from '../../store/locationStore';
 import MapView from '../../components/maps/MapView';
 import toast from 'react-hot-toast';
-import { Plus, Edit2, Trash2, Users, MapPin } from 'lucide-react';
+import { Plus, Edit2, Trash2, Users, MapPin, ArrowLeft } from 'lucide-react';
 
 const FACILITIES = ['medical', 'food', 'water', 'shelter', 'sanitation', 'power', 'communication'];
 
 export default function CampManagementPage() {
+  const navigate = useNavigate();
   const { lat, lng, getLocation } = useLocationStore();
   const [camps, setCamps] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -53,7 +55,14 @@ export default function CampManagementPage() {
       <main className="main-content with-sidebar">
         <div style={{ background: 'linear-gradient(135deg, #2563EB, #1D4ED8)', padding: '1.75rem 2rem', color: 'white', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div><h1 style={{ color: 'white', fontFamily: 'Outfit,sans-serif', fontSize: '1.5rem' }}>🏕️ Camp Management</h1><p style={{ color: 'rgba(255,255,255,0.8)' }}>Create and manage relief camps</p></div>
-          <button className="btn" onClick={() => setShowCreate(true)} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: '2px solid rgba(255,255,255,0.3)' }}><Plus size={16} /> New Camp</button>
+          <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+            <button 
+              onClick={() => navigate(-1)} 
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.375rem', padding: '0.5rem 0.9rem', borderRadius: 8, background: 'rgba(255,255,255,0.2)', color: 'white', border: '1px solid rgba(255,255,255,0.3)', cursor: 'pointer', fontWeight: 600, fontSize: '0.875rem' }}>
+              <ArrowLeft size={16} /> Back
+            </button>
+            <button className="btn" onClick={() => setShowCreate(true)} style={{ background: 'rgba(255,255,255,0.2)', color: 'white', border: '2px solid rgba(255,255,255,0.3)' }}><Plus size={16} /> New Camp</button>
+          </div>
         </div>
 
         <div style={{ padding: '1.5rem 2rem' }}>
